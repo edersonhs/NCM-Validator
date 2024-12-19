@@ -34,7 +34,9 @@ url_base_validacao = 'https://portalunico.siscomex.gov.br/classif/api/publico/no
 ncms_data = carregar_dados_ncms(url_base_validacao)
 
 # Carregando NCMs do Usuario
-arquivo_ncms_validar = open('E:\\Codes\\Validador_NCM\\ncms_para_validar.txt')
+import os
+relative_path = os.path.join(os.path.dirname(__file__), 'ncms_para_validar.txt')
+arquivo_ncms_validar = open(relative_path)
 
 # Medir o tempo de otimização dos dados
 start_time = time.time()
@@ -75,4 +77,7 @@ start_time = time.time()
 wb.save('planilha_exemplo.xlsx')
 print(f"Tempo para gerar a Planilha: {time.time() - start_time:.6f} segundos")
 
-print(f"Vigencia da base de NCMs utilizada para validação: {ncms_data['Data_Ultima_Atualizacao_NCM']}")
+if 'Data_Ultima_Atualizacao_NCM' in ncms_data:
+    print(f"Vigencia da base de NCMs utilizada para validação: {ncms_data['Data_Ultima_Atualizacao_NCM']}")
+else:
+    print("A chave 'Data_Ultima_Atualizacao_NCM' não foi encontrada nos dados NCM.")
