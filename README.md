@@ -22,6 +22,7 @@ Este projeto é um validador de NCM (Nomenclatura Comum do Mercosul) que verific
 - O script se conecta ao banco de dados Firebird e realiza uma consulta (SELECT DISTINCT) para obter os NCMs cadastrados.
 - Cada NCM do banco de dados é comparado com a lista de NCMs válidos.
 - O resultado da validação é salvo em uma planilha, especificando quais NCMs são validos e quais não constam na lista de NCMs.
+- O script não valida a data final de vigencia dos NCMs, apesar de a api retornar esta informação, consideranndo que no momento em que foi desennvolvido, nenhum dos NCMs tinha uma previsão concreta de vencimento.
 
 # Casos de Uso
 - Validação de NCMs em sistemas empresariais que utilizam Firebird.
