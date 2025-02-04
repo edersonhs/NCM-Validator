@@ -52,7 +52,11 @@ print(f"Tempo de validação:           {time.time() - start_time:10.6f} segundo
 
 # Medir o tempo para gerar a planilha
 start_time = time.time()
-wb.save('planilha_exemplo.xlsx')
+try:
+    wb.save('planilha_exemplo.xlsx')
+except Exception as e:
+    print(f"Houve um erro ao gerar a planilha: {e}")
+
 print(f"Tempo para gerar a Planilha:  {time.time() - start_time:10.6f} segundos")
 
 if 'Data_Ultima_Atualizacao_NCM' in ncms_data:
