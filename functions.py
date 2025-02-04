@@ -25,7 +25,7 @@ def validar_ncm(ncm, codigos_ncm):
 def ler_arquivo(arquivo_config):
     try:
         file = open(arquivo_config, 'r')
-        path = file.readline()
+        path = file.readline().strip() # .strip(): Remove espaços e quebras de linha
         file.close()
         return path
     except Exception as e:

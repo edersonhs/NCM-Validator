@@ -1,4 +1,4 @@
-from colorama import init, Fore, Style
+from colorama import init, Fore
 
 # Inicializa o colorama para funcionar no cmd do Windows
 init(autoreset=True)
