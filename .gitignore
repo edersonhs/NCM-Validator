@@ -1,3 +1,16 @@
 
 ambiente_validador_ncm/
 .venv/
+Honolulu/Honolulu.FDB
+__pycache__/colors.cpython-312.pyc
+__pycache__/firebirdIntegration.cpython-312.pyc
+/__pycache__
+/build
+/config
+/database
+/dist
+main.spec
+ncms_para_validar.txt
+ncms_para_validar.txt
+/venv
+planilha_exemplo.xlsx
