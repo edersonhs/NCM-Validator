@@ -1,9 +1,14 @@
+from colorama import init, Fore, Style
+
+# Inicializa o colorama para funcionar no cmd do Windows
+init(autoreset=True)
+
 colors = {
-    'amarelo': '\033[1;33m',
-    'roxo': '\033[1;35m',
-    'vermelho': '\033[1;31m',
-    'azul': '\033[1;34m',
-    'azulCiano': '\033[1;36m',
-    'verde': '\033[1;32m',
-    'branco': '\033[1;37m'
+    'amarelo': Fore.YELLOW,
+    'roxo': Fore.MAGENTA,
+    'vermelho': Fore.RED,
+    'azul': Fore.BLUE,
+    'azulCiano': Fore.CYAN,
+    'verde': Fore.GREEN,
+    'branco': Fore.WHITE
 }

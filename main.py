@@ -8,7 +8,7 @@ from colors import colors
 url_base_validacao = 'https://portalunico.siscomex.gov.br/classif/api/publico/nomenclatura/download/json'
 ncms_data = carregar_dados_ncms(url_base_validacao)
 
-path_bd = ler_arquivo('Config\Sistema_Dir.cfg')
+path_bd = ler_arquivo('Config\\Sistema_Dir.cfg')
 ncms = carregar_dados_firebird('localhost', path_bd, 'sysdba', 'masterkey')
 
 ncms_bd_validar = []
