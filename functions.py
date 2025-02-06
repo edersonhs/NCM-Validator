@@ -1,8 +1,12 @@
 import requests
+from time import time
 from colors import colors
 
 def carregar_dados_ncms(url):
+    print(f"{colors["branco"]}Carregando dados da API do Siscomex...")
+    start_time = time()
     response = requests.get(url)
+    print(f"{colors["branco"]}Os dados foram carregados em  {time() - start_time:.6f} segundos\n")
     response.raise_for_status()  # Levanta um erro para respostas inválidas
     return response.json()
 

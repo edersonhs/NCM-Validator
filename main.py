@@ -3,6 +3,7 @@ from openpyxl import Workbook
 from firebirdIntegration import carregar_dados_firebird
 from functions import carregar_dados_ncms, otimizar_ncm_data, validar_ncm, ler_arquivo
 from colors import colors
+from os import startfile
 
 # Carregando base de NCMs da API do Siscomex para validação
 url_base_validacao = 'https://portalunico.siscomex.gov.br/classif/api/publico/nomenclatura/download/json'
@@ -53,15 +54,21 @@ print(f"Tempo de validação:           {time.time() - start_time:10.6f} segundo
 # Medir o tempo para gerar a planilha
 start_time = time.time()
 try:
-    wb.save('planilha_exemplo.xlsx')
+    wb.save('NCMs_Validados.xlsx')
+    print(f"Tempo para gerar a Planilha:  {time.time() - start_time:10.6f} segundos")
 except Exception as e:
-    print(f"Houve um erro ao gerar a planilha: {e}")
-
-print(f"Tempo para gerar a Planilha:  {time.time() - start_time:10.6f} segundos")
+    print(f"{colors["vermelho"]}Houve um erro ao gerar a planilha: {e}")
 
 if 'Data_Ultima_Atualizacao_NCM' in ncms_data:
-    print(f"\n{colors["roxo"]}Vigencia da base de NCMs utilizada para validação: {ncms_data['Data_Ultima_Atualizacao_NCM']}{colors["branco"]}")
+    print(f"\n{colors["branco"]}Vigencia da base de NCMs utilizada para validação: {colors["verde"]}{ncms_data['Data_Ultima_Atualizacao_NCM']}{colors["branco"]}")
 else:
     print(f"{colors["vermelho"]}A chave 'Data_Ultima_Atualizacao_NCM' não foi encontrada.{colors["branco"]}")
+
+try:
+    print(f"\n{colors["branco"]}Abrindo planilha...")
+    startfile("NCMs_Validados.xlsx")
+except Exception as e:
+    print(f"{colors["vermelho"]}Houve um erro ao abrir o arquivo: {e}")
+
 
 input(f"\n{colors["azulCiano"]}Pressione Enter para sair...")

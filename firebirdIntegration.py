@@ -10,7 +10,7 @@ def carregar_dados_firebird(host, database, user, password):
             user=user,
             password=password
         )
-        print(f"{colors["verde"]}Conexão bem-sucedida!{colors["branco"]}")
+        print(f"{colors["verde"]}Conexão ao banco de dados bem-sucedida!{colors["branco"]}")
     except fdb.Error as e:
         print(f"{colors["vermelho"]}Erro ao conectar ao banco de dados: {e}{colors["branco"]}")
         exit(1)
@@ -22,12 +22,12 @@ def carregar_dados_firebird(host, database, user, password):
     cursor = connection.cursor()
 
     # Executar uma consulta 
-    cursor.execute("select DISTINCT P.NCM from ESTOQUE_PRODUTO P")
+    cursor.execute("SELECT DISTINCT P.NCM FROM ESTOQUE_PRODUTO P WHERE P.ATIVO = 'S' AND P.NCM IS NOT NULL")
 
     #Fechar conexão com BD
     ncms = cursor.fetchall()
     cursor.close()
     connection.close()
-    print(f"{colors["amarelo"]}Conexão encerrada.{colors["branco"]}\n")
+    print(f"{colors["vermelho"]}Conexão ao banco de dados encerrada.{colors["branco"]}\n")
 
     return ncms
