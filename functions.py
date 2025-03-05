@@ -34,12 +34,11 @@ def ler_arquivo(arquivo_config):
             if path.count(':') == 1: # path para acesso em rede local
                 return 'localhost', path
             elif path.count(':') == 2: # path para acesso em rede
-                
                 # Extrai o host (tudo antes do primeiro ':')
                 host = path[:path.find(':')]
                 # Extrai o resto do path (tudo após o primeiro ':')
-                path_bd = path[path.find(':') + 1:] 
-                
+                path_bd = path[path.find(':') + 1:]
+                 
                 return host, path_bd
             else:
                 print(f"{colors["vermelho"]}Erro ao carregar o arquivo de configuração. Verifique se o arquivo Sistema_Dir.cfg está correto.{colors["branco"]}")
