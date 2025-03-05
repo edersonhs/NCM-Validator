@@ -28,10 +28,23 @@ def validar_ncm(ncm, codigos_ncm):
 
 def ler_arquivo(arquivo_config):
     try:
-        file = open(arquivo_config, 'r')
-        path = file.readline().strip() # .strip(): Remove espaços e quebras de linha
-        file.close()
-        return path
+        with open(arquivo_config, 'r') as file:
+            path = file.readline().strip() # .strip(): Remove espaços e quebras de linha
+
+            if path.count(':') == 1: # path para acesso em rede local
+                return 'localhost', path
+            elif path.count(':') == 2: # path para acesso em rede
+                
+                # Extrai o host (tudo antes do primeiro ':')
+                host = path[:path.find(':')]
+                # Extrai o resto do path (tudo após o primeiro ':')
+                path_bd = path[path.find(':') + 1:] 
+                
+                return host, path_bd
+            else:
+                print(f"{colors["vermelho"]}Erro ao carregar o arquivo de configuração. Verifique se o arquivo Sistema_Dir.cfg está correto.{colors["branco"]}")
+                input(f"\n{colors['azulCiano']}Pressione Enter para sair...")
+                exit(1)       
     except Exception as e:
-        print(f"{colors["vermelho"]}Erro ao ler arquivo de configuração: {e}{colors["branco"]}")
-        exit(1)
+            print(f"{colors["vermelho"]}Erro ao ler arquivo de configuração: {e}{colors["branco"]}")
+            exit(1)

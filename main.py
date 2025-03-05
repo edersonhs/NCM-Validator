@@ -9,8 +9,9 @@ from os import startfile
 url_base_validacao = 'https://portalunico.siscomex.gov.br/classif/api/publico/nomenclatura/download/json'
 ncms_data = carregar_dados_ncms(url_base_validacao)
 
-path_bd = ler_arquivo('Config\\Sistema_Dir.cfg')
-ncms = carregar_dados_firebird('localhost', path_bd, 'sysdba', 'masterkey')
+# Carregando base de NCMs do Banco de Dados para validação
+host, path  = ler_arquivo('Config\\Sistema_Dir.cfg')
+ncms = carregar_dados_firebird(host, path, user='sysdba', password='masterkey')
 
 ncms_bd_validar = []
 

@@ -16,6 +16,7 @@ def carregar_dados_firebird(host, database, user, password):
         exit(1)
     except Exception as e:
         print(f"\n\n{colors["vermelho"]}Erro desconhecido ao conectar ao banco de dados: {e}{colors["branco"]}")
+        input(f"\n{colors['azulCiano']}Pressione Enter para sair...")
         exit(1)
 
     # Criar um cursor para executar comandos SQL
